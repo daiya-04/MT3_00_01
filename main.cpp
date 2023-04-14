@@ -1,4 +1,5 @@
 #include <Novice.h>
+#include"function.h"
 
 const char kWindowTitle[] = "LE2A_09_セト_ダイヤ";
 
@@ -11,6 +12,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
 	char preKeys[256] = {0};
+
+	Vec3 v1 = { 1.0f,3.0f,-5.0f };
+	Vec3 v2 = { 4.0f,-1.0f,2.0f };
+	float k = 4.0f;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -32,6 +37,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
+
+		VectorScreenPrintf(0, 0, Add(v1, v2), "  : Add");
+		VectorScreenPrintf(0, kRowHeight, Sub(v1, v2), "  : Sub");
+		VectorScreenPrintf(0, kRowHeight * 2, Mul(k, v1), "  :Mul");
+		Novice::ScreenPrintf(0, kRowHeight * 3, "%.02f  : Dot", Dot(v1, v2));
+		Novice::ScreenPrintf(0, kRowHeight * 4, "%.02f  : Length", Length(v1));
+		VectorScreenPrintf(0, kRowHeight * 5, Normalize(v2), "  :Normalize");
 
 		///
 		/// ↑描画処理ここまで
